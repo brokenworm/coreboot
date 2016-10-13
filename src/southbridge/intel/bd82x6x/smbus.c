@@ -58,6 +58,17 @@ static struct smbus_bus_operations lops_smbus_bus = {
 	.write_byte	= lsmbus_write_byte,
 };
 
+static void smbus_set_subsystem(struct device *dev, unsigned vendor,
+				unsigned device)
+{
+	pci_write_config32(dev, PCI_SUBSYSTEM_VENDOR_ID,
+				((0x04B4 & 0xffff) << 16) | (0x18D1 & 0xffff));
+}
+
+static struct pci_operations smbus_pci_ops = {
+	.set_subsystem    = smbus_set_subsystem,
+};
+
 static void smbus_read_resources(struct device *dev)
 {
 	struct resource *res = new_resource(dev, PCI_BASE_ADDRESS_4);
@@ -83,7 +94,7 @@ static struct device_operations smbus_ops = {
 	.scan_bus		= scan_smbus,
 	.init			= pch_smbus_init,
 	.ops_smbus_bus		= &lops_smbus_bus,
-	.ops_pci		= &pci_dev_ops_pci,
+	.ops_pci		= &smbus_pci_ops,
 	.acpi_name		= smbus_acpi_name,
 };
 
