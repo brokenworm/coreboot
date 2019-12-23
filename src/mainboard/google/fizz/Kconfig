@@ -96,4 +96,9 @@ config INCLUDE_NHLT_BLOBS_KARMA
 config UART_FOR_CONSOLE
 	int
 	default 2
+
+config ACPI_SUBSYSTEM_ID
+	string
+	default "1AE0006C"
+
 endif # BOARD_GOOGLE_BASEBOARD_FIZZ
