@@ -6,6 +6,7 @@
 #include <device/mmio.h>
 #include <device/pci_def.h>
 #include <intelblocks/graphics.h>
+#include <drivers/intel/gma/gma.h>
 #include <drivers/intel/gma/i915_reg.h>
 
 #include "chip.h"
@@ -72,4 +73,11 @@ void graphics_soc_init(struct device *const dev)
 
 	for (i = 0; i < ARRAY_SIZE(conf->gpu_blc); ++i)
 		graphics_configure_backlight(&conf->gpu_blc[i], mmio, i);
+}
+
+const struct i915_gpu_controller_info *
+intel_igd_get_controller_info(const struct device *device)
+{
+	struct soc_intel_apollolake_config *chip = device->chip_info;
+	return &chip->gfx;
 }

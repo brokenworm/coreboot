@@ -4,6 +4,7 @@
 #define _SOC_APOLLOLAKE_CHIP_H_
 
 #include <commonlib/helpers.h>
+#include <drivers/intel/gma/gma.h>
 #include <intelblocks/cfg.h>
 #include <intelblocks/gspi.h>
 #include <soc/gpe.h>
@@ -201,6 +202,9 @@ struct soc_intel_apollolake_config {
 	 * 0:Enable (default), 1:Disable.
 	 */
 	uint8_t disable_xhci_lfps_pm;
+
+	/* i915 struct for GMA backlight control */
+	struct i915_gpu_controller_info gfx;
 };
 
 typedef struct soc_intel_apollolake_config config_t;
