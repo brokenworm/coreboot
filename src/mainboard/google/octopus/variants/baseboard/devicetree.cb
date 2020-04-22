@@ -237,7 +237,7 @@ chip soc/intel/apollolake
 				end
 			end
 		end	# - XHCI
-		device pci 15.1 on  end	# - XDCI
+		device pci 15.1 off end	# - XDCI
 		device pci 16.0 on  end	# - I2C 0
 		device pci 16.1 off  end	# - I2C 1
 		device pci 16.2 off  end	# - I2C 2
