@@ -44,4 +44,5 @@
 #include <soc/intel/common/block/acpi/acpi/pch_glan.asl>
 
 /* PMC Core */
-#include <soc/intel/common/block/acpi/acpi/pmc.asl>
+// #include <soc/intel/common/block/acpi/acpi/pmc.asl>
+// breaks windowns on HATCH
